@@ -1,6 +1,6 @@
 node {
    stage('stage1'){
-     dir('MAVEN'){
+     dir('MAVEN')
      git 'https://github.com/cit31/studentapp-code.git'
     }
     }
