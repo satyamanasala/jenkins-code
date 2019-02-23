@@ -3,9 +3,9 @@ node {
      build job: 'Create_Instance_Ansible', parameters: [string(name: 'Hostname', value: 'stu-dev-app01'), booleanParam(name: 'INSTANCE_RECREATE', value: true)]      
       dir ('ANSIBLE') {
       git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/ansible.git'
-      sh '''
-  ansible-playbook playbooks/deploy.yml
-'''
       }
+      sh '''
+      ansible-playbook playbooks/deploy.yml
+'''
       }
   }
