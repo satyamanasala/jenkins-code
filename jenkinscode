@@ -1,8 +1,6 @@
 node
 {
   stage('Git Clone'){
-     dir ('MAVEN'){
-     git credentialsId: '02ef65db-4999-4d12-b50a-61ab78a24452', url: 'https://github.com/satyamanasala/studentapp-code.git'
-       }
-   }
+          git credentialsId: '02ef65db-4999-4d12-b50a-61ab78a24452', url: 'https://github.com/satyamanasala/studentapp-code.git'
+         }
  }
