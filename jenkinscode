@@ -4,26 +4,5 @@ node {
      git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/studentapp-code.git'
          }
      }
-  stage('compile') {
-  sh 'mvn compile'
-   }
-  stage('Sonar-cloud') {
-   sh 'mvn sonar:sonar \
-  -Dsonar.projectKey=satyamanasala_satyarepository \
-  -Dsonar.organization=satyamanasala-github \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=cab6f8c12957b2ba492ceba40b9b74a0a9bba227'
-  }
-  stage('packaging') {
-   sh 'mvn package'
-  }
-  stage('Deploy') {
-     build job: 'Create_Instance_Ansible', parameters: [string(name: 'Hostname', value: 'stu-dev-app01'), booleanParam(name: 'INSTANCE_RECREATE', value: true)]      
-      dir ('ANSIBLE') {
-      git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/ansible.git'
-      sh '''
-  ansible-playbook playbooks/deploy.yml
-'''
-      }
-      }
+ 
   }
