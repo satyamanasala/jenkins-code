@@ -8,5 +8,13 @@ node
    {
     sh 'mvn compile'
    }
+   stage('sonar cloud')
+   {
+    sh 'mvn sonar:sonar \
+  -Dsonar.projectKey=satyamanasala_studentapp-code \
+  -Dsonar.organization=satyamanasala-github \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=04e37114dc489f1a929c5d0f3a61a3e6211b25b3'
+   }
 }
 
