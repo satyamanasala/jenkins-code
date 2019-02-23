@@ -6,7 +6,6 @@ node
    }
    stage('check downloaded files'){
     sh 'ls'
-    echo 'hello world'
    }
 }
 
