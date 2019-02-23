@@ -2,7 +2,7 @@ node
 {
    stage('Git clone')
    {
-     git credentialsId: '02ef65db-4999-4d12-b50a-61ab78a24452', url: 'https://github.com/satyamanasala/jenkins-code.git'     
+     git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/studentapp-code.git'     
    }
    stage('mvn compile')
    {
