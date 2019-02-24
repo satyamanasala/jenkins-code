@@ -5,7 +5,7 @@ stage('Deploy') {
       dir ('ANSIBLE') {
       git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/myansible.git'
       sh '''
-      sh 'ls'
+      ls
       '''
 }
 }
