@@ -3,9 +3,9 @@ node {
      build job: 'Create_Instance_Ansible', parameters: [string(name: 'Hostname', value: 'stu-dev-app01'), booleanParam(name: 'INSTANCE_RECREATE', value: true)]      
       dir ('ANSIBLE') {
       https://github.com/cit31/ansible.git
-      }
       sh '''
       ansible-playbook playbooks/deploy.yml
 '''
+       }
       }
   }
