@@ -31,7 +31,7 @@ node {
       }
       }
 
- stage('selenium-tests) {
+ stage('selenium-tests') {
     dir ('SELENIUM') {
      git 'https://github.com/cit31/selenium-sauce.git'
      sh '''
