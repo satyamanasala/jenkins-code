@@ -1,46 +1,17 @@
-node {
-  stage('Git Clone') {
-     dir ('MAVEN') {
-     git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/studentapp-code.git'
-         }
-     }
-
-  stage('compile') {
-   dir ('MAVEN') {
-   sh 'mvn compile'
-   }
-   }
- 
-  stage('Sonar-cloud') {
-   sh 'mvn sonar:sonar \
-  -Dsonar.projectKey=satyamanasala_satyarepository \
-  -Dsonar.organization=satyamanasala-github \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=cab6f8c12957b2ba492ceba40b9b74a0a9bba227'
+node
+{
+  stage('Git Clone'){
+     dir ('MAVEN'){
+     git 'https://github.com/cit31/studentapp-code.git'
   }
- 
- stage('packaging') {
-   sh 'mvn package'
-  }
-
-  stage('Deploy') {
-     build job: 'Create_Instance_Ansible', parameters: [string(name: 'Hostname', value: 'stu-dev-app01'), booleanParam(name: 'INSTANCE_RECREATE', value: true)]      
-      dir ('ANSIBLE') {
-      git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/myansible.git'
-      sh '''
-        ansible-playbook playbooks/deploy.yml
-'''
-      }
-      }
-
- stage('selenium-tests') {
-    dir ('SELENIUM') {
-     git 'https://github.com/cit31/selenium-sauce.git'
-     sh '''
-   IPADDRESS=$(gcloud compute instances list | grep stu-dev-app01 | awk '{print $5])
-   sed -i -e "s/IPADDRESS/$IPADDRESS/" src/test/java/framework/CrudStudent.java
-   mvn clean install "-Dremote=true" "-DseleniumGridURL=http://<username>:<key>@ondemand.saucelabs.com:80/wd/hub" 
-   '''
-   }
  }
-} 
+ stage('compile') {
+    dir ('MAVEN') {
+  sh 'mvn compile'
+ }}
+ stage('Sonar-cloud'){
+  dir ('MAVEN') {
+  sh 'mvn compile'
+ }
+   sh 'mvn sonar:sonar -Dsonar.........'
+}
