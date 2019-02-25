@@ -9,9 +9,5 @@ node
     dir ('MAVEN') {
   sh 'mvn compile'
  }}
- stage('Sonar-cloud'){
-  dir ('MAVEN') {
-  sh 'mvn compile'
- }
-   sh 'mvn sonar:sonar -Dsonar.........'
+ 
 }
