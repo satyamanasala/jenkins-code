@@ -10,4 +10,16 @@ node
   sh 'mvn compile'
  }}
  
+ stage('Sonar-cloud') {
+   sh 'mvn sonar:sonar \
+  -Dsonar.projectKey=satyamanasala_satyarepository \
+  -Dsonar.organization=satyamanasala-github \
+  -Dsonar.host.url=https://sonarcloud.io \
+  -Dsonar.login=cab6f8c12957b2ba492ceba40b9b74a0a9bba227'
+  }
+ 
+ stage('packaging') {
+   sh 'mvn package'
+  }
+ 
 }
