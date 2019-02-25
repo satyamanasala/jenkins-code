@@ -41,7 +41,7 @@ node
      sh '''
    IPADDRESS=$(gcloud compute instances list | grep stu-dev-app01 | awk '{print $5])
    sed -i -e "s/IPADDRESS/$IPADDRESS/" src/test/java/framework/CrudStudent.java
-   mvn clean install "-Dremote=true" "-DseleniumGridURL=http://<username>:<key>@ondemand.saucelabs.com:80/wd/hub" 
+   mvn clean install "-Dremote=true" "-DseleniumGridURL=http://satyamanasala:205d94af-0a9a-4ede-b3a3-b157c73db6bf@ondemand.saucelabs.com:80/wd/hub" 
    '''
    }
  }
