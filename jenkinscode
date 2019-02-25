@@ -1,12 +1,11 @@
 node
-{
-  
+{  
  stage('selenium-tests') {
     dir ('SELENIUM') {
      git credentialsId: 'a01ea52a-5aed-4a8a-8044-670947b48a08', url: 'https://github.com/satyamanasala/selenium-sauce.git'
      sh '''
    IPADDRESS=$(gcloud compute instances list | grep stu-dev-app01 | awk '{print $5])
-   sed -i -e 's/IPADDRESS/$IPADDRESS/' src/test/java/framework/CrudStudent.java
+   sed -i -e "s/IPADDRESS/$IPADDRESS/" src/test/java/framework/CrudStudent.java
    mvn clean install "-Dremote=true" "-DseleniumGridURL=http://satyamanasala:205d94af-0a9a-4ede-b3a3-b157c73db6bf@ondemand.saucelabs.com:80/wd/hub" 
    '''
    }
