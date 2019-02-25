@@ -11,11 +11,13 @@ node
  }}
  
  stage('Sonar-cloud') {
+   dir ('MAVEN') {
    sh 'mvn sonar:sonar \
   -Dsonar.projectKey=satyamanasala_satyarepository \
   -Dsonar.organization=satyamanasala-github \
   -Dsonar.host.url=https://sonarcloud.io \
   -Dsonar.login=cab6f8c12957b2ba492ceba40b9b74a0a9bba227'
+  }
   }
  
  stage('packaging') {
