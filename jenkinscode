@@ -37,7 +37,7 @@ node
 
  stage('selenium-tests') {
     dir ('SELENIUM') {
-     git 'https://github.com/cit31/selenium-sauce.git'
+     https://github.com/satyamanasala/selenium-sauce.git
      sh '''
    IPADDRESS=$(gcloud compute instances list | grep stu-dev-app01 | awk '{print $5])
    sed -i -e "s/IPADDRESS/$IPADDRESS/" src/test/java/framework/CrudStudent.java
