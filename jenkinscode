@@ -6,7 +6,9 @@ node {
      }
 
   stage('compile') {
+   dir ('MAVEN') {
    sh 'mvn compile'
+   }
    }
  
   stage('Sonar-cloud') {
