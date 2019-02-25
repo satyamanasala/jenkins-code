@@ -1,42 +1,6 @@
 node
 {
-  stage('Git Clone'){
-     dir ('MAVEN'){
-     git 'https://github.com/cit31/studentapp-code.git'
-  }
- }
- stage('compile') {
-    dir ('MAVEN') {
-  sh 'mvn compile'
- }}
- 
- stage('Sonar-cloud') {
-   dir ('MAVEN') {
-   sh 'mvn sonar:sonar \
-  -Dsonar.projectKey=satyamanasala_satyarepository \
-  -Dsonar.organization=satyamanasala-github \
-  -Dsonar.host.url=https://sonarcloud.io \
-  -Dsonar.login=cab6f8c12957b2ba492ceba40b9b74a0a9bba227'
-  }
-  }
- 
- stage('packaging') {
-   dir ('MAVEN') {
-   sh 'mvn package'
-   }
-  }
-  stage('Deploy') {
-     build job: 'Create_Instance_Ansible', parameters: [string(name: 'Hostname', value: 'stu-dev-app01'), booleanParam(name: 'INSTANCE_RECREATE', value: true)]      
-      dir ('ANSIBLE') {
-      git credentialsId: '64318b96-c461-4d54-bac5-3fce77074d95', url: 'https://github.com/satyamanasala/myansible.git'
-      sh '''
-      export ANSIBLE_CONFIG=/var/lib/jenkins/ansible.cfg
-         echo stu-dev-app01 >hosts
-        ansible-playbook -i hosts ansible-playbooks/deploy.yml
-'''
-      }
-      }
-
+  
  stage('selenium-tests') {
     dir ('SELENIUM') {
      git credentialsId: 'a01ea52a-5aed-4a8a-8044-670947b48a08', url: 'https://github.com/satyamanasala/selenium-sauce.git'
