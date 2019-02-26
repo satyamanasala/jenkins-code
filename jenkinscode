@@ -7,7 +7,7 @@ node {
 
   stage('compile') {
 dir ('MAVEN') {
-   sh 'mvn compile' -DVERSIONNO=${VERSIONNO} -DVERSIONTYPE=RELEASE '
+   sh 'mvn compile -DVERSIONNO=${VERSIONNO} -DVERSIONTYPE=RELEASE '
    }
  }
   stage('Sonar-cloud') {
@@ -22,7 +22,7 @@ dir ('MAVEN') {
  
  stage('packaging'){
    dir ('MAVEN'){
-   sh 'mvn package' -DVERSIONNO=${VERSIONNO} -DVERSIONTYPE=RELEASE '
+   sh 'mvn package -DVERSIONNO=${VERSIONNO} -DVERSIONTYPE=RELEASE '
   }
   }
 
