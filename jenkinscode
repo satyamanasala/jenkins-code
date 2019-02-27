@@ -42,7 +42,7 @@ stage('selenium-tests') {
     dir ('SELENIUM') {
       git credentialsId: 'a01ea52a-5aed-4a8a-8044-670947b48a08', url: 'https://github.com/satyamanasala/selenium-sauce.git'
      sh '''
-   sleep 20                                --------->WILL GET AN ERROR IF IT WAS NOT GIVEN AS THE                                                          TOMCAT WILL TAKE SOMETIME TO START
+   sleep 20                             
    IPADDRESS=$(gcloud compute instances list | grep stu-dev-app01 | awk '{print $5}')
    sed -i -e "s/IPADDRESS/$IPADDRESS/" src/test/java/framework/CrudStudent.java
    mvn clean install -DVERSIONNO=${VERSIONNO} -DVERSIONTYPE=RELEASE "-Dremote=true" "-DseleniumGridURL=http://<username>:<key>@ondemand.saucelabs.com:80/wd/hub" 
